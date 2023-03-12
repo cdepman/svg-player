@@ -10,16 +10,19 @@ const backgroundColor = '#3c234b';
 // set backround color
 document.body.style.background = backgroundColor;
 
+// animations are slower on mobile clients, so increase the size of each turn there
+const mobileAnimationSpeedMultiplier = window.innerWidth > 700 ? 1 : 1.75;
+``
 // set the individual svg component animation rotation angle increment
 // in radians for each animation frame tick
-const individualSvgRotationAngleIncrememntRadians = 0.17;
+const individualSvgRotationAngleIncrememntRadians = 0.17 * mobileAnimationSpeedMultiplier;
 
 // set the individual svg component scale factor (size)
 const individualSvgScaleFactor = window.innerWidth > 700 ? .24 : .10;
 
 // set the rotation increment in radians for the svg component composite
 // for each animation frame tick
-const compositeRotationAngleIncrementRadians = .005
+const compositeRotationAngleIncrementRadians = .005 * mobileAnimationSpeedMultiplier;
 
 // load Two.js
 const two = new Two({
