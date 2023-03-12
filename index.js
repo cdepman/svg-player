@@ -9,7 +9,7 @@ const repeatCount = 20;
 const individualSvgRotationAngleIncrememntRadians = 0.2;
 
 // set the individual svg component scale factor (size)
-const individualSvgScaleFactor = .24
+const individualSvgScaleFactor = window.innerWidth > 700 ? .24 : .15;
 
 // set the rotation increment in radians for the svg component composite
 // for each animation frame tick
