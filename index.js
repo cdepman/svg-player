@@ -12,14 +12,14 @@ document.body.style.background = backgroundColor;
 
 // set the individual svg component animation rotation angle increment
 // in radians for each animation frame tick
-const individualSvgRotationAngleIncrememntRadians = 0.15;
+const individualSvgRotationAngleIncrememntRadians = 0.17;
 
 // set the individual svg component scale factor (size)
-const individualSvgScaleFactor = window.innerWidth > 700 ? .24 : .15;
+const individualSvgScaleFactor = window.innerWidth > 700 ? .24 : .10;
 
 // set the rotation increment in radians for the svg component composite
 // for each animation frame tick
-const compositeRotationAngleIncrementRadians = .003
+const compositeRotationAngleIncrementRadians = .005
 
 // load Two.js
 const two = new Two({
