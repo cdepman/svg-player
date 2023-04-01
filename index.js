@@ -2,7 +2,7 @@
 const body = document.body;
 
 // set number of desired repeats
-const repeatCount = 20;
+const repeatCount = 16;
 
 // define background color
 const backgroundColor = '#3c234b';
@@ -15,14 +15,18 @@ const mobileAnimationSpeedMultiplier = window.innerWidth > 700 ? 1 : 1.75;
 ``
 // set the individual svg component animation rotation angle increment
 // in radians for each animation frame tick
-const individualSvgRotationAngleIncrememntRadians = 0.17 * mobileAnimationSpeedMultiplier;
+const individualSvgRotationAngleIncrememntRadians = 0.05 * mobileAnimationSpeedMultiplier;
 
 // set the individual svg component scale factor (size)
-const individualSvgScaleFactor = window.innerWidth > 700 ? .24 : .10;
+const individualSvgScaleFactor = window.innerWidth > 700 ? .25 : .10;
 
 // set the rotation increment in radians for the svg component composite
 // for each animation frame tick
-const compositeRotationAngleIncrementRadians = .005 * mobileAnimationSpeedMultiplier;
+let compositeRotationAngleIncrementRadians = .005 * mobileAnimationSpeedMultiplier;
+
+const clockwise = true;
+
+compositeRotationAngleIncrementRadians = compositeRotationAngleIncrementRadians * (clockwise ? 1 : -1 );
 
 // load Two.js
 const two = new Two({
