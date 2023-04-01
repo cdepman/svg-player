@@ -35,17 +35,17 @@ const two = new Two({
 }).appendTo(body);
 
 // Load the SVG file
-const svgElement = document.getElementById('svg_container').children[0];
-const interpretedSvg = two.interpret(svgElement);
+const svgComponentElement = document.getElementById('svg_container').children[0];
+const interpretedSvgComponent = two.interpret(svgComponentElement);
 
-// Build an array of svg clones based on the number of repeats
-let svgArray = []
+// Build an array of svg component clones based on the number of repeats
+let svgComponentArray = []
 for (let i = 0; i < repeatCount; i++) {
-  svgArray.push(interpretedSvg.clone());
+  svgComponentArray.push(interpretedSvgComponent.clone());
 }
 
 // clean up the original svg
-interpretedSvg.remove()
+interpretedSvgComponent.remove()
 
 // get center of the canvas
 const yCenter = two.height / 2
@@ -56,17 +56,17 @@ const rotationStepDegrees = 360 / repeatCount
 const rotationStepRadians = rotationStepDegrees * Math.PI / 180
 
 // create the radially repeated elements
-svgArray.forEach((item, i) => {
+svgComponentArray.forEach((component, i) => {
   let rotation = i * rotationStepRadians
   // set the center point to rotate around
-  item.translation.set(xCenter, yCenter)
-  item.rotation = rotation
+  component.translation.set(xCenter, yCenter)
+  component.rotation = rotation
   // scale the svg depending on needs
-  item.scale = individualSvgScaleFactor
+  component.scale = individualSvgScaleFactor
 
   // Add each cloned element to an independent parent group
   let parent = two.makeGroup()
-  parent.add(item)
+  parent.add(component)
 
   // add them to the two context
   two.add(parent);
@@ -74,12 +74,12 @@ svgArray.forEach((item, i) => {
 
 two.update();
 
-// create animation to rotate each svg atomic shape around its own axis
-const setAnimation = (shape) => {
+// create animation to rotate each svg component component around its own axis
+const setComponentRotationAnimation = (component) => {
   let angle = 0
 
   // grab the parent so that we can calculate the center point of the bounding box
-  let elementParent = document.getElementById(shape.id).parentElement
+  let elementParent = document.getElementById(component.id).parentElement
   // extract the measurements from the bounding box
   const { left, top, width, height } = elementParent.getBoundingClientRect()
   // calculate the x,y center
@@ -99,15 +99,15 @@ const setAnimation = (shape) => {
   animate()
 }
 
-svgArray.forEach((shape) => {
-  // set the animation on each item to rotate it around its own axis
-  setAnimation(shape)
+svgComponentArray.forEach((component) => {
+  // set the animation on each component to rotate it around its own axis
+  setComponentRotationAnimation(component)
 })
 
 two.bind('update', () => {
-  svgArray.forEach((shape) => {
-    // set each shape to rotate around the central axis
-    shape.rotation += compositeRotationAngleIncrementRadians;
+  svgComponentArray.forEach((component) => {
+    // set each component to rotate around the central axis
+    component.rotation += compositeRotationAngleIncrementRadians;
   })
 })
 
